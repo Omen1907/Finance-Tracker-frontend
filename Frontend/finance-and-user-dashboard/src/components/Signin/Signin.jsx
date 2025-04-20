@@ -20,6 +20,9 @@ const Signin = ({ loadUser, onRouteChange }) => {
   const onSubmitSignIn = async (event) => {
     event.preventDefault();
     try {
+      console.log("API URL:", apiUrl);
+      console.log("Sending signin request with:", { email, password });
+
       const response = await fetch(`${apiUrl}/signin`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
