@@ -5,6 +5,8 @@ const Register = ({ loadUser, onRouteChange }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const onEmailChange = (event) => {
     setEmail(event.target.value);
     setError('');
@@ -18,7 +20,7 @@ const Register = ({ loadUser, onRouteChange }) => {
   const onSubmitRegister = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/register', {
+      const response = await fetch(`${apiUrl}/register`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

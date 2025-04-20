@@ -15,12 +15,14 @@ const Transactions = () => {
   });
   const [transactions, setTransactions] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         const token = localStorage.getItem('token');
         if (!token) throw new Error('No token found');
-        const response = await axios.get('http://localhost:3000/transactions', {
+        const response = await axios.get(`${apiUrl}/transactions`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setTransactions(response.data);
@@ -42,7 +44,7 @@ const Transactions = () => {
       console.log("Deleting transaction ID:", id);
   
       const response = await axios.delete(
-        `http://localhost:3000/transactions/${id}`,
+        `${apiUrl}/transactions/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -64,7 +66,7 @@ const Transactions = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await axios.post(
-        'http://localhost:3000/transactions',
+        `${apiUrl}/transactions`,
         {
           amount: parseFloat(formData.amount),
           category: formData.category,

@@ -5,6 +5,8 @@ const Signin = ({ loadUser, onRouteChange }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const onEmailChange = (event) => {
     setEmail(event.target.value);
     setError('');
@@ -18,7 +20,7 @@ const Signin = ({ loadUser, onRouteChange }) => {
   const onSubmitSignIn = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/signin', {
+      const response = await fetch(`${apiUrl}/signin`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
