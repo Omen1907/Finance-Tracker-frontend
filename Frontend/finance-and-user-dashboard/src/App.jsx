@@ -13,12 +13,42 @@ function App() {
   });
 
   const apiUrl = import.meta.env.VITE_API_URL;
+  console.log('API URL:', apiUrl);
 
   useEffect(() => {
-    fetch(`${apiUrl}/api/something`)
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, [apiUrl]);
+    if (!apiUrl) {
+      console.error('VITE_API_URL is not defined');
+      return;
+    }
+    if (route !== 'home') return; // Only fetch when on home route
+  
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+  
+    const controller = new AbortController();
+    fetch(`${apiUrl}/transactions`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      signal: controller.signal,
+    })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Transactions:', data); // Update state instead in real app
+      })
+      .catch(error => {
+        if (error.name === 'AbortError') return;
+        console.error('Fetch error:', error);
+      });
+  
+    return () => controller.abort();
+  }, [apiUrl, route]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
