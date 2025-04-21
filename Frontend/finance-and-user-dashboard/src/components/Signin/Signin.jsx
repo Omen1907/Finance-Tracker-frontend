@@ -40,7 +40,7 @@ const Signin = ({ loadUser, onRouteChange }) => {
         setError(data.error || 'Invalid email or password');
       }
     } catch (err) {
-      setError('Failed to connect to server');
+      setError('Failed to connect to server', err);
     }
   };
 

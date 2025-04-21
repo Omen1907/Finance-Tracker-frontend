@@ -37,7 +37,7 @@ const Register = ({ loadUser, onRouteChange }) => {
         setError(data.error || 'Registration failed');
       }
     } catch (err) {
-      setError('Failed to connect to server');
+      setError('Failed to connect to server', err);
     }
   };
 
