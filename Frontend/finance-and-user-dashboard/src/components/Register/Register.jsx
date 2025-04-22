@@ -29,8 +29,7 @@ const Register = ({ loadUser, onRouteChange }) => {
         })
       });
       const data = await response.json();
-      if (response.ok && data.token) {
-        localStorage.setItem('token', data.token);
+      if (response.ok) {
         loadUser(data.user);
         onRouteChange('home');
       } else {
