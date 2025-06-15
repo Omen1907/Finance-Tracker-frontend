@@ -3,6 +3,7 @@ import Register from './components/Register/Register';
 import Signin from './components/Signin/Signin';
 import Transactions from './components/Transactions/Transactions';
 import 'tachyons/css/tachyons.min.css';
+import "./App.css"
 
 
 function App() {
@@ -76,17 +77,14 @@ function App() {
   };
 
   return (
-    <div className="min-vh-100 bg-light-gray flex flex-column items-center pa4">
+    <div className="min-h-screen">
       {route === 'signin' ? (
-        <div className="w-100 w-90-m w-60-l center">
           <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
-        </div>
       ) : route === 'register' ? (
-        <div className="w-100 w-90-m w-60-l center">
           <Register loadUser={loadUser} onRouteChange={onRouteChange} />
-        </div>
-      ) : (
-        <div className="w-100 w-100-m w-70-l center bg-white br3 pa4">
+      ) : 
+      (
+        <div className="w-100 w-100-m w-90-l center bg-white br3 pa4">
           <div className="flex justify-between items-center mb4">
             <h1 className="f3 fw4 dark-gray">Dashboard</h1>
             <button

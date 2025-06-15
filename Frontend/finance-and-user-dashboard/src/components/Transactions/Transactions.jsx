@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Pie, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import AllMonths from "./AllMonths";
 
 ChartJS.register(ArcElement, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -189,16 +190,15 @@ const Transactions = () => {
   return (
     <div className="pa4 sans-serif">
     <h2 className="f2 mb4 tc">Transactions</h2>
-
-    <div className="flex flex-wrap justify-center items-start mb5">
+    <div className="flex flex-wrap justify-center items-center mb5">
       {/* Summary */}
-      <div className="w-100 w-50-ns ph2 mb4">
+      <div className="w-100 w-50-xs ph2 mb4 bg-amber-100 rounded-2xl">
         <h3 className="f3 mb3">Summary</h3>
         <p>Total Income: ${totalIncome.toFixed(2)}</p>
         <p>Total Expenses: ${totalExpenses.toFixed(2)}</p>
         <p>Net Balance: ${(totalIncome - totalExpenses).toFixed(2)}</p>
       </div>
-  
+      <AllMonths />
         {/* Charts in row */}
       <div className="w-100 flex flex-column flex-row-ns justify-center items-start">
         {/* Income Chart */}
@@ -210,7 +210,6 @@ const Transactions = () => {
             <p className="gray i">No income data yet. Try adding an income transaction.</p>
           )}
         </div>
-  
         {/* Expense Chart */}
         <div className="w-100 w-50-ns ph2 mb4 bg-washed-red pa3 br2 shadow-1">
           <h3 className="f3 mb3">Expenses by Category</h3>
@@ -221,7 +220,6 @@ const Transactions = () => {
           )}
         </div>
       </div>
-  
         {/* Line Chart below the two pie charts */}
       <div className="w-100 ph2 mb5 bg-washed-yellow pa3 br2 shadow-1">
         <h3 className="f3 mb3 tc">Balance Over Time</h3>
@@ -232,7 +230,6 @@ const Transactions = () => {
         )}
       </div>
     </div>
-  
       {/* Add Transaction Form */}
       <div className="mb5">
         <h3 className="f3 mb3">Add Transaction</h3>
@@ -248,7 +245,6 @@ const Transactions = () => {
               className="input-reset ba b--black-20 pa2 w-100"
             />
           </div>
-  
           <div className="mb3">
             <label className="db mb2">Category</label>
             <input
@@ -260,7 +256,6 @@ const Transactions = () => {
               className="input-reset ba b--black-20 pa2 w-100"
             />
           </div>
-  
           <fieldset className="mb3 bn">
             <legend className="db mb2">Type</legend>
             <label className="mr3">
@@ -286,7 +281,6 @@ const Transactions = () => {
               Expense
             </label>
           </fieldset>
-  
           <div className="mb3">
             <label className="db mb2">Date</label>
             <input
@@ -298,7 +292,6 @@ const Transactions = () => {
               className="input-reset ba b--black-20 pa2 w-100"
             />
           </div>
-  
           <div className="mb3">
             <label className="db mb2">Description</label>
             <input
@@ -309,7 +302,6 @@ const Transactions = () => {
               className="input-reset ba b--black-20 pa2 w-100"
             />
           </div>
-  
           <button
             type="submit"
             className="bg-blue white pa2 br2 pointer dim w-100"
@@ -318,7 +310,6 @@ const Transactions = () => {
           </button>
         </form>
       </div>
-  
       {/* Income Table */}
       <div className="mb5">
         <h3 className="f3 mb3">Income</h3>
@@ -353,7 +344,6 @@ const Transactions = () => {
           </tbody>
         </table>
       </div>
-  
       {/* Expense Table */}
       <div className="mb5">
         <h3 className="f3 mb3">Expenses</h3>
