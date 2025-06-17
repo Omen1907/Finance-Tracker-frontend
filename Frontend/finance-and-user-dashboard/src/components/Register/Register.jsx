@@ -44,8 +44,8 @@ const Register = ({ loadUser, onRouteChange }) => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600"></div>
-      <div className="w-1/2 flex justify-center items-center bg-gray-100">
+      <div className="w-1/2 bg-gradient-to-br from-green-200 to-slate-600"></div>
+      <div className="w-1/2 flex justify-center items-center bg-emerald-50">
         <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
           <h2 className="text-center text-2xl font-semibold mb-6 text-gray-800">Register</h2>
           <form onSubmit={onSubmitRegister} className="flex flex-col space-y-4">

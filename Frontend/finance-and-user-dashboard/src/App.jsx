@@ -4,7 +4,9 @@ import Signin from './components/Signin/Signin';
 import Transactions from './components/Transactions/Transactions';
 import 'tachyons/css/tachyons.min.css';
 import "./App.css"
+import Navbar from './components/NavBar/Navbar';
 
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   const [route, setRoute] = useState('signin');
@@ -13,7 +15,6 @@ function App() {
     email: ''
   });
 
-  const apiUrl = import.meta.env.VITE_API_URL;
   console.log('API URL:', apiUrl);
 
   useEffect(() => {
@@ -77,28 +78,35 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen">
-      {route === 'signin' ? (
+    <div className="flex min-h-screen">
+      {/* Left sidebar */}
+      <div className="w-1/4 bg-light-gray">
+        <Navbar />
+      </div>
+  
+      {/* Right main content */}
+      <div className="flex-grow bg-white p-4">
+        {route === 'signin' ? (
           <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
-      ) : route === 'register' ? (
+        ) : route === 'register' ? (
           <Register loadUser={loadUser} onRouteChange={onRouteChange} />
-      ) : 
-      (
-        <div className="w-100 w-100-m w-90-l center bg-white br3 pa4">
-          <div className="flex justify-between items-center mb4">
-            <h1 className="f3 fw4 dark-gray">Dashboard</h1>
-            <button
-              className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-red br2 pointer"
-              onClick={() => onRouteChange('signout')}
-            >
-              Sign Out
-            </button>
+        ) : (
+          <div className="bg-white br3 pa4">
+            <div className="flex justify-between items-center mb4">
+              <h1 className="f3 fw4 dark-gray">Dashboard</h1>
+              <button
+                className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-red br2 pointer"
+                onClick={() => onRouteChange('signout')}
+              >
+                Sign Out
+              </button>
+            </div>
+            <Transactions />
           </div>
-          <Transactions />
-        </div>
-      )}
+        )}
+      </div>
     </div>
-  );
+  );  
 }
 
 export default App;
